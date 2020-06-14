@@ -1,10 +1,10 @@
 {
-  "name": "vincentp.mc.sendwebmention",
+  "name": "vincentp.mc.syndication",
   "version": "1.0.0",
-  "description": "Mastr Cntrl Microservice to send webmentions",
-  "main": "https://mc-send-webmention.herokuapp.com/",
+  "description": "Mastr Cntrl Microservice to syndicate content",
+  "main": "https://mc-syndication.herokuapp.com/",
   "author": "Vincent Pickering",
-  "homepage": "https://github.com/vipickering/mc-send-webmention#readme",
+  "homepage": "https://github.com/vipickering/mc-syndication#readme",
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=prod node ./bin/server.js | bunyan -o short",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vipickering/mc-send-webmention.git"
+    "url": "git+https://github.com/vipickering/mc-syndication.git"
   },
   "engines": {
     "node": "v12.16.2"

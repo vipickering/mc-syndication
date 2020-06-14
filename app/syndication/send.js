@@ -1,5 +1,5 @@
 /*
-POST the found webmention to Syndication service
+POST the found item to Syndication service
 */
 
 const logger = require(appRootDirectory + '/app/logging/bunyan');
@@ -15,10 +15,10 @@ logger.info(`Would send ${source} to ${service}`); // Test to prove it works.
 //     (async () => {
 //         try {
 //             const response = axios.post(telegraph.url, querystring.stringify({ token : telegraph.token, source : source, target : target }));
-//             logger.info('Webmention Sent');
+//             logger.info('Syndication item sent');
 //     } catch (error) {
 //         logger.error(error);
-//         logger.info('Webmention Send Failed');
+//         logger.info('Syndication send failed');
 //     }
 //   })();
 };

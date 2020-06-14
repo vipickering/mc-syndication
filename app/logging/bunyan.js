@@ -28,7 +28,7 @@ const streamsContent =  [
 ];
 
 const logger = bunyan.createLogger({
-    name : 'MC-SendWebmentions',
+    name : 'MC-Syndication',
     serializers : {
         err : bunyan.stdSerializers.err
     },

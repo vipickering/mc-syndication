@@ -1,5 +1,5 @@
 /*
-Use the feed data to loop over the webmention items and check for new items
+Use the feed data to loop over the syndication items and check for new items
 Use the last sent date to compare if there are new items in the feed
 If new items are found pass to the Send function
 If new items are found, update the last sent date to the latest item in the feed
@@ -20,29 +20,29 @@ exports.check = function check(lastDate, feedItems) {
 
     logger.info(`last sent at ${lastSentTime}`);
     /*
-    Loop over the feed and look for new webmentions
-    If a new webmention is found:
-     - Send the webmention
-     - update the timpTime variable to the date of the new webmention
+    Loop over the feed and look for new syndication items
+    If a new item is found:
+     - Syndicate the item
+     - update the tempTime variable to the date of the new item
     */
     for (item in syndicationItems) {
         if (syndicationItems.hasOwnProperty(item)) {
             if (syndicationItems[item].date > lastSentTime) {
-                logger.info(`${syndicationItems[item].source} on date ${syndicationItems[item].date} sending to ${syndicationItems[item].target}`);
-                syndication.send(syndicationItems[item].source, syndicationItems[item].target);
+                logger.info(`${syndicationItems[item].url} on date ${syndicationItems[item].date} sending to ${syndicationItems[item].target}`);
+                syndication.send(syndicationItems[item].url, syndicationItems[item].target); // DO we need to pass content here???!
                 tempTime = syndicationItems[item].date;
             }
         }
     }
 
     /*
-    Check if  any webmentions were sent by comparing tempTime.
+    Check if  any syndication items were sent by comparing tempTime.
     */
     if (tempTime > lastSentTime) {
         const payload = `{"time" : "${tempTime}"}`;
-        logger.info(`Updating webmention last sent time to ${tempTime}`);
+        logger.info(`Updating syndication last sent time to ${tempTime}`);
         lastFetchDate.update(payload, lastDate.data.sha);
     } else {
-        logger.info('No Webmentions found');
+        logger.info('No Syndication items found');
     }
 };

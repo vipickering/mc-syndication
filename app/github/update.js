@@ -8,11 +8,11 @@ const axios = require('axios');
 const base64 = require('base64it');
 const config = require(appRootDirectory + '/app/config.js');
 const github = config.github;
-const webmention = config.webmention;
+const syndicate = config.syndicate;
 
 exports.update = function update(payload, sha) {
     const payloadEncoded = base64.encode(payload);
-    const urlDestination = `${github.postUrl}/${webmention.lastSentPath}`;
+    const urlDestination = `${github.postUrl}/${syndicate.lastSentPath}`;
     const messageContent = ':robot: last sent datetime updated';
 
     logger.info(urlDestination);
