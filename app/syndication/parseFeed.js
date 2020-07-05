@@ -29,7 +29,7 @@ exports.check = function check(lastDate, feedItems) {
         if (syndicationItems.hasOwnProperty(item)) {
             if (syndicationItems[item].date > lastSentTime) {
                 logger.info(`${syndicationItems[item].url} on date ${syndicationItems[item].date} sending to ${syndicationItems[item].target}`);
-                syndication.send(syndicationItems[item].url, syndicationItems[item].target); // DO we need to pass content here???!
+                syndication.send(syndicationItems[item].url, syndicationItems[item].target, syndicationItems[item].content);
                 tempTime = syndicationItems[item].date;
             }
         }

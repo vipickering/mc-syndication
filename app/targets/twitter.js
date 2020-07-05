@@ -1,26 +1,27 @@
 /* eslint-disable camelcase */
 
 /*
-Send to Twitter
-
+Syndicate conent  to Twitter
 */
+exports.send = function send(content, source) {
+    const logger = require(appRootDirectory + '/app/logging/bunyan');
+    const config = require(appRootDirectory + '/app/config.js');
+    const syndicate = config.syndicate;
+    const Twit = require('twit');
+    const tweetContent = content + source;
+    var tweet = new Twit({
+        consumer_key :  syndicate.twitter.ApiKey,
+        consumer_secret :  syndicate.twitter.ApiSecret,
+        access_token : syndicate.twitter.AccessToken,
+        access_token_secret :  syndicate.twitter.AccessSecret,
+        timeout_ms : 60 * 1000,
+        strictSSL : true     // optional - requires SSL certificates to be valid.
+    });
 
-const logger = require(appRootDirectory + '/app/logging/bunyan');
-const config = require(appRootDirectory + '/app/config.js');
-const Twit = require('twit');
-
-var tweet = new Twit({
-    consumer_key :  '...',
-    consumer_secret :  '...',
-    access_token : '...',
-    access_token_secret :  '...',
-    timeout_ms : 60 * 1000,  // optional HTTP request timeout to apply to all requests.
-    strictSSL : true     // optional - requires SSL certificates to be valid.
-});
-
-//
-//  tweet 'hello world!'
-//
-tweet.post('statuses/update', {status : 'hello world!'}, function sendTweet(err, data, response) {
-    logger.info(data);
-});
+    //
+    //  tweet 'hello world!'
+    //
+    tweet.post('statuses/update', {status : tweetContent}, function sendTweet(data) {
+        logger.info(data);
+    });
+};
