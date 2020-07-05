@@ -30,7 +30,6 @@
     "helmet": "^3.21.3",
     "oauth": "^0.9.15",
     "querystring": "^0.2.0",
-    "serve-favicon": "^2.5.0",
-    "twit": "^2.2.11"
+    "serve-favicon": "^2.5.0"
   }
 }
