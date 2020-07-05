@@ -4,24 +4,33 @@
 Syndicate conent  to Twitter
 */
 exports.send = function send(content, source) {
+    const OAuth = require('oauth');
     const logger = require(appRootDirectory + '/app/logging/bunyan');
     const config = require(appRootDirectory + '/app/config.js');
-    const syndicate = config.syndicate;
-    const Twit = require('twit');
+    const twitter = config.twitter;
     const tweetContent = content + source;
-    var tweet = new Twit({
-        consumer_key :  syndicate.twitter.ApiKey,
-        consumer_secret :  syndicate.twitter.ApiSecret,
-        access_token : syndicate.twitter.AccessToken,
-        access_token_secret :  syndicate.twitter.AccessSecret,
-        timeout_ms : 60 * 1000,
-        strictSSL : true     // optional - requires SSL certificates to be valid.
-    });
+    const postBody = {'status': tweetContent};
+    const oauth = new OAuth.OAuth(
+        'https://api.twitter.com/oauth/request_token',
+        'https://api.twitter.com/oauth/access_token',
+        twitter.ApiKey,
+        twitter.ApiSecret,
+        '1.0A',
+        null,
+        'HMAC-SHA1'
+    );
 
-    //
-    //  tweet 'hello world!'
-    //
-    tweet.post('statuses/update', {status : tweetContent}, function sendTweet(data) {
-        logger.info(data);
-    });
+    // logger.info('Ready to Tweet article:\n\t', postBody.status);
+    oauth.post('https://api.twitter.com/1.1/statuses/update.json',
+        twitter.AccessToken,
+        twitter.AccessSecret,
+        postBody,
+        '',
+        function sendIt(err, data, res) {
+            if (err) {
+                logger.error(err);
+            } else {
+                logger.info(data);
+            }
+        });
 };

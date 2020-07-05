@@ -19,13 +19,14 @@ config.api = {
 config.syndicate = {
     'feed' : process.env.SYNDICATION_FEED,
     'interval' : process.env.INTERVAL_DURATION,
-    'lastSentPath' : process.env.SYNDICATION_LAST_PATH,
-    'twitter' : {
-        'ApiKey' : process.env.TWITTER_API_KEY,
-        'ApiSecret' : process.env.TWITTER_API_SECRET,
-        'AccessToken' : process.env.TWITTER_ACCESS_TOKEN,
-        'AccessSecret' : process.env.TWITTER_ACCESS_SECRET
-    }
+    'lastSentPath' : process.env.SYNDICATION_LAST_PATH
+};
+
+config.twitter = {
+    'ApiKey' : process.env.TWITTER_API_KEY,
+    'ApiSecret' : process.env.TWITTER_API_SECRET,
+    'AccessToken' : process.env.TWITTER_ACCESS_TOKEN,
+    'AccessSecret' : process.env.TWITTER_ACCESS_SECRET
 };
 
 module.exports = config;
