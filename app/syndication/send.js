@@ -5,14 +5,16 @@ exports.send = function send(source, service, content) {
     const logger = require(appRootDirectory + '/app/logging/bunyan');
     const twitter = require(appRootDirectory + '/app/targets/twitter');
 
-    // I need a function to decide which service to post to, some may require authentication e.g. pinboard or Twitter.
-    // I can use ${service} to determine how this works. and pass to the relevant file.
-    //logger.info(`Would send ${content} from ${source} to ${service}`); // Test to prove it works.
+    //Make sure tweet doesn't exceed char count.
+    function truncate(str, n) {
+        return (str.length > n) ? str.substr(0, n - 1) + '...' : str;
+    }
 
     switch (service) {
     case 'Twitter' :
         logger.info(`Found ${content}  for ${service}`);
-        twitter.send(content, source);
+        const truncatedContent = truncate(content, 140);
+        twitter.send(truncatedContent, source);
         break;
     case 'Pinboard' :
         logger.info(`Found ${content}  for  ${service}`);
