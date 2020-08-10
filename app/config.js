@@ -19,7 +19,8 @@ config.api = {
 config.syndicate = {
     'feed' : process.env.SYNDICATION_FEED,
     'interval' : process.env.INTERVAL_DURATION,
-    'lastSentPath' : process.env.SYNDICATION_LAST_PATH
+    'lastSentPath' : process.env.SYNDICATION_LAST_PATH,
+    'token' : process.env.SYNDICATION_ROUTE_TOKEN
 };
 
 config.twitter = {
