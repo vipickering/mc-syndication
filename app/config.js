@@ -30,4 +30,8 @@ config.twitter = {
     'AccessSecret' : process.env.TWITTER_ACCESS_SECRET
 };
 
+config.slack = {
+    'token' : process.env.SLACK_TOKEN
+};
+
 module.exports = config;
