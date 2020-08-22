@@ -22,5 +22,5 @@ app.use(express.json());
 app.use('/', routes);
 
 const server = app.listen(process.env.PORT || port, function serveTheThings() {
-    logger.info('MC Syndication Online Port:%s...', server.address().port);
+    logger.info('mc-syndication Online Port:%s...', server.address().port);
 });
