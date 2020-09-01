@@ -9,7 +9,7 @@ exports.send = function send(content, source) {
     const config = require(appRootDirectory + '/app/config.js');
     const twitter = config.twitter;
     const tweetContent = content + source;
-    const postBody = {'status': tweetContent};
+    const postBody = {'status' : tweetContent};
     const oauth = new OAuth.OAuth(
         'https://api.twitter.com/oauth/request_token',
         'https://api.twitter.com/oauth/access_token',
