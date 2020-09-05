@@ -1,19 +1,21 @@
 /*eslint no-process-env: "off"*/
 const config = {};
-
-config.github = {
-    'postUrl' : process.env.GITHUB_HOST + '/repos/' + process.env.GITHUB_NAME + '/' + process.env.GITHUB_REPO + '/contents',
-    'key' : process.env.GITHUB_KEY,
-    'repo' : process.env.GITHUB_REPO,
-    'name' : process.env.GITHUB_NAME,
-    'user' : process.env.GITHUB_USER,
-    'email' : process.env.GITHUB_USER_EMAIL,
-    'host' : process.env.GITHUB_HOST,
-    'branch' : process.env.GITHUB_BRANCH
-};
-
 config.api = {
     'port' : process.env.API_PORT
+};
+
+config.github = {
+    'host' : process.env.GITHUB_HOST,
+    'key' : process.env.GITHUB_KEY,
+    'name' : process.env.GITHUB_NAME,
+    'user' : process.env.GITHUB_USER,
+    'email' : process.env.GITHUB_USER_EMAIL
+};
+
+config.syndicationRepo = {
+    'postUrl' : process.env.GITHUB_HOST + '/repos/' + process.env.GITHUB_NAME + '/' + process.env.SYNDICATION_REPO + '/contents',
+    'repo' : process.env.SYNDICATION_REPO,
+    'branch' : process.env.SYNDICATION_REPO_BRANCH
 };
 
 config.syndicate = {

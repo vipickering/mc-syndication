@@ -9,7 +9,7 @@ const axios = require('axios');
 const base64 = require('base64it');
 const config = require(appRootDirectory + '/app/config.js');
 const github = config.github;
-const syndicate = config.syndicate;
+const syndicationRepo = config.syndicationRepo;
 
 exports.update = function update(payload, sha) {
     const payloadEncoded = base64.encode(payload);
@@ -31,6 +31,7 @@ exports.update = function update(payload, sha) {
             data : {
                 message : messageContent,
                 content : payloadEncoded,
+                branch : syndicationRepo.branch,
                 sha : sha,
                 committer : {
                     name : github.user,
