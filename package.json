@@ -18,7 +18,7 @@
     "node": "v12.16.2"
   },
   "devDependencies": {
-    "eslint": "^7.7.0"
+    "eslint": "^7.8.1"
   },
   "dependencies": {
     "@slack/webhook": "^5.0.3",
