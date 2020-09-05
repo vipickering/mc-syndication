@@ -13,7 +13,7 @@ const syndicationRepo = config.syndicationRepo;
 
 exports.update = function update(payload, sha) {
     const payloadEncoded = base64.encode(payload);
-    const urlDestination = `${github.postUrl}/${syndicate.lastSentPath}`;
+    const urlDestination = `${syndicationRepo.postUrl}/${syndicate.lastSentPath}`;
     const messageContent = ':robot: last sent datetime updated';
 
     logger.info(urlDestination);
