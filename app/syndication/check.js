@@ -7,14 +7,16 @@ Then pass those items to the Parse Feed funcntion
 */
 
 const logger = require(appRootDirectory + '/app/logging/bunyan');
+const slack = require(appRootDirectory + '/app/slack/post-message-slack');
+const axios = require('axios');
 const config = require(appRootDirectory + '/app/config.js');
 const parseFeed = require(appRootDirectory + '/app/syndication/parseFeed');
-const axios = require('axios');
+const github = config.github;
+const syndicate = config.syndicate;
+const syndicationRepo = config.syndicationRepo;
 
 exports.check = function check() {
-    const github = config.github;
-    const syndicate = config.syndicate;
-    const urlDestination = `${github.postUrl}/${syndicate.lastSentPath}`;
+    const urlDestination = `${syndicationRepo.postUrl}/${syndicate.lastSentPath}`;
     const options = {
         headers : {
             Authorization : `token ${github.key}`,
@@ -30,16 +32,12 @@ exports.check = function check() {
         axios.get(syndicate.feed)
     ])
         .then(axios.spread((lastDate, feedItems) => {
-            // logger.info(lastDate.data.sha);
-            // logger.info(lastDate.data.content); // base64 decode this.
-            // logger.info(base64.decode(lastDate.data.content));
-            // logger.info(feedItems.data);
-
             // Pass this to the parseFeed function
             parseFeed.check(lastDate, feedItems);
         }))
         .catch(function fail(error) {
             logger.error(error);
             logger.info('GIT GET Failed');
+            slack.sendMessage('Failed to get feed or last update time, check logs');
         });
 };

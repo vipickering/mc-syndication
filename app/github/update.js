@@ -13,10 +13,10 @@ const syndicationRepo = config.syndicationRepo;
 
 exports.update = function update(payload, sha) {
     const payloadEncoded = base64.encode(payload);
-    const urlDestination = `https://api.github.com/repos/vipickering/mc-syndication/contents/${syndicate.lastSentPath}`;
+    const urlDestination = `${syndicationRepo.postUrl}/${syndicate.lastSentPath}`;
     const messageContent = ':robot: last sent datetime updated';
 
-    logger.info('url Destination' + urlDestination);
+    logger.info(urlDestination);
 
     (async () => {
         try {
