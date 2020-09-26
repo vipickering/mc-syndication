@@ -16,7 +16,7 @@ exports.update = function update(payload, sha) {
     const urlDestination = `https://api.github.com/repos/vipickering/mc-syndication/contents/${syndicate.lastSentPath}`;
     const messageContent = ':robot: last sent datetime updated';
 
-    logger.info(urlDestination);
+    logger.info('url Destination' + urlDestination);
 
     (async () => {
         try {
