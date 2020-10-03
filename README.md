@@ -8,8 +8,7 @@ Mastr Cntrl Syndication is a part of a Microservices suite of [IndieWeb](https:/
 
 ## Purpose
 
-The service polls a JSON feed once every 10 mins (interval configurable) to check for content flagged for syndication that has not been sent.
-If it finds any new content it will:
+This service has a configurable webhook URL, designed to be triggered when your static website it built. POSTing to that URL will trigger the service to look in your location for a JSON feed, once found it will:
 
 1. Loop through the items and identify the syndication preferences.
 2. Pass the syndication data on to its handler
