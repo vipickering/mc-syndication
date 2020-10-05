@@ -4,7 +4,6 @@ const logger = require(appRootDirectory + '/app/logging/bunyan');
 exports.sendMessage = function sendMessage(message) {
     const slackToken = config.slack.token;
     if (slackToken){
-        logger.info('hello');
         const url = `https://hooks.slack.com/services/${slackToken}`;
         const webhook = new IncomingWebhook(url);
 

@@ -10,6 +10,7 @@ const base64 = require('base64it');
 const config = require(appRootDirectory + '/app/config.js');
 const github = config.github;
 const syndicationRepo = config.syndicationRepo;
+const syndicate = config.syndicate;
 
 exports.update = function update(payload, sha) {
     const payloadEncoded = base64.encode(payload);
