@@ -11,6 +11,7 @@ const slack = require(appRootDirectory + '/app/slack/post-message-slack');
 const axios = require('axios');
 const config = require(appRootDirectory + '/app/config.js');
 const parseFeed = require(appRootDirectory + '/app/syndication/parseFeed');
+const base64 = require('base64it');
 const github = config.github;
 const syndicate = config.syndicate;
 const syndicationRepo = config.syndicationRepo;
@@ -32,6 +33,11 @@ exports.check = function check() {
         axios.get(syndicate.feed)
     ])
         .then(axios.spread((lastDate, feedItems) => {
+            logger.info(lastDate.data);
+            logger.info(lastDate.data.sha);
+            logger.info(lastDate.data.content); // base64 decode this.
+            logger.info(base64.decode(lastDate.data.content)); // Looks like I am passing in the whole object, not the value.
+
             // Pass this to the parseFeed function
             parseFeed.check(lastDate, feedItems);
         }))
