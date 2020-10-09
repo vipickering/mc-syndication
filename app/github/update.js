@@ -48,7 +48,7 @@ exports.update = function update(payload, sha) {
             logger.error(error.response);
             logger.info(error.response.data.message);
             logger.info('GIT PUT Failed');
-            slack.sendMessage('Micropub failed, check logs');
+            slack.sendMessage('Syndication last update failed, check logs');
         }
       })();
 };
